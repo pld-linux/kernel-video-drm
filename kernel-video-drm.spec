@@ -16,6 +16,7 @@ Source0:	http://www.xfree86.org/~alanh/linux-drm-%{version}-kernelsource.tar.gz
 # Source0-md5:	34515784c7b67f6cc9169aa9eed982c7
 URL:		http://www.xfree86.org/~alanh/
 %{!?_without_dist_kernel:BuildRequires:         kernel-headers}
+BuildRequires:	rpmbuild(macros) >= 1.118
 Requires(post,postun):		/sbin/depmod
 Requires(post,postun):		modutils >= 2.3.18-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,10 +43,10 @@ install gamma.o tdfx.o r128.o radeon.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver} }%{_kernel_ver}
+%depmod %{_kernel_ver}
 
 %postun
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver} }%{_kernel_ver}
+%depmod %{_kernel_ver}
 
 %files
 %defattr(644,root,root,755)
