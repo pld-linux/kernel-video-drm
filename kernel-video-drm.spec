@@ -1,11 +1,10 @@
-%define		_rel 3
-%define		_kvs	%(echo %{__kernel_ver} | sed s/-/_/g)
+%define		_rel 3.1
 
 Summary:	DRM drivers
 Summary(pl):	Sterowniki DRM
 Name:		kernel-video-drm
 Version:	4.3.0
-Release:        %{_rel}@%{_kvs}
+Release:        %{_rel}@%(echo %{__kernel_ver} | sed s/-/_/g)
 License:	MIT
 Group:		Base/kernel
 Source0:	http://www.xfree86.org/~alanh/linux-drm-%{version}-kernelsource.tar.gz
@@ -28,9 +27,9 @@ Sterowniki DRM
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/lib/modules/%{_kvs}/misc
+install -d $RPM_BUILD_ROOT/lib/modules/%{__kernel_ver}/misc
 
-install gamma.o tdfx.o r128.o radeon.o $RPM_BUILD_ROOT/lib/modules/%{_kvs}/misc
+install gamma.o tdfx.o r128.o radeon.o $RPM_BUILD_ROOT/lib/modules/%{__kernel_ver}/misc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -44,4 +43,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.drm
-/lib/modules/%{_kvs}/misc/*
+/lib/modules/%{__kernel_ver}/misc/*
