@@ -31,7 +31,7 @@ Sterowniki DRM.
 %setup -q -n drm
 
 %build
-%{__make} -f Makefile.linux CFLAGS="%{rpmcflags}"
+%{__make} -f Makefile.linux CFLAGS="%{rpmcflags}" VERSION=%{_kernel_ver}
 
 %install
 rm -rf $RPM_BUILD_ROOT
