@@ -2,6 +2,7 @@
 # Conditional build:
 # _without_dist_kernel          without distribution kernel
 #
+# TODO: UP/SMP
 %define		_rel 3.1
 
 Summary:	DRM drivers
@@ -40,10 +41,10 @@ install gamma.o tdfx.o r128.o radeon.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver} %{_kernel_ver}
 
 %postun
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver} %{_kernel_ver}
 
 %files
 %defattr(644,root,root,755)
