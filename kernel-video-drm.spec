@@ -1,10 +1,10 @@
-%define		_rel 1
+%define		_rel 2
 
 Summary:	DRM drivers
 Summary(pl):	Sterowniki DRM
 Name:		kernel-video-drm
 Version:	4.3.0
-Release:        %{_rel}@%{__kernel_ver}
+Release:        %{_rel}@%(echo %{__kernel_ver} | sed s/-/_/g)
 License:	MIT
 Group:		Base/kernel
 Source0:	http://www.xfree86.org/~alanh/linux-drm-%{version}-kernelsource.tar.gz
