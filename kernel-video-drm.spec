@@ -9,7 +9,6 @@ License:	MIT
 Group:		Base/kernel
 Source0:	http://www.xfree86.org/~alanh/linux-drm-%{version}-kernelsource.tar.gz
 URL:		http://www.xfree86.org/~alanh/
-#BuildRequires:	-
 PreReq:		/sbin/depmod
 PreReq:		modutils >= 2.3.18-2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
