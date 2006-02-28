@@ -13,11 +13,11 @@
 %undefine	with_dist_kernel
 %endif
 
+%define		_rel	1
 Summary:	Linux driver for drm
 Summary(pl):	Sterownik dla Linuksa do drm
 Name:		kernel-video-drm
 Version:	20051020
-%define		_rel	1
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
@@ -92,7 +92,7 @@ for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}
 	ln -sf %{_kernelsrcdir}/include/linux/autoconf-$cfg.h include/linux/autoconf.h
 	ln -sf %{_kernelsrcdir}/include/asm-%{_target_base_arch} include/asm
 	touch include/config/MARKER
-	
+
 	%{__make} M="$PWD" O="$PWD" drm_pciids.h
 	%{__make} -C %{_kernelsrcdir} modules \
 		CC="%{__cc}" CPP="%{__cpp}" \
