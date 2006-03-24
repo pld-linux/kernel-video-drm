@@ -14,8 +14,8 @@
 %endif
 
 %define		_rel	1
-Summary:	Linux driver for drm
-Summary(pl):	Sterownik dla Linuksa do drm
+Summary:	Linux driver for DRM
+Summary(pl):	Sterownik dla Linuksa do DRM
 Name:		kernel-video-drm
 Version:	20051020
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -24,7 +24,7 @@ Group:		Base/Kernel
 Source0:	drm-%{version}.tar.bz2
 # Source0-md5:	a82d473de399da966b2562e67faedcaf
 Patch0:		%{name}-pciids.patch
-URL:		http://dri.freedesktop.org/
+URL:		http://dri.freedesktop.org/wiki/DRM
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.7}
 BuildRequires:	rpmbuild(macros) >= 1.217
@@ -38,18 +38,17 @@ Obsoletes:	kernel-drm = %{_kernel_ver_str}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This is driver for drm for Linux.
-
-This package contains Linux module.
+The DRM (Direct Rendering Manager) is a kernel module that gives
+direct hardware access to DRI clients.
 
 %description -l pl
-Sterownik dla Linuksa do drm.
+Sterownik dla Linuksa do DRM.
 
 Ten pakiet zawiera modu³ j±dra Linuksa.
 
 %package -n kernel-smp-video-drm
-Summary:	Linux SMP driver for drm
-Summary(pl):	Sterownik dla Linuksa SMP do drm
+Summary:	Linux SMP driver for DRM
+Summary(pl):	Sterownik dla Linuksa SMP do DRM
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
@@ -61,12 +60,11 @@ Requires(postun):	%releq_kernel_smp
 Obsoletes:	kernel-smp-drm = %{_kernel_ver_str}
 
 %description -n kernel-smp-video-drm
-This is driver for drm for Linux.
-
-This package contains Linux SMP module.
+The DRM (Direct Rendering Manager) is a kernel module that gives
+direct hardware access to DRI clients.
 
 %description -n kernel-smp-video-drm -l pl
-Sterownik dla Linuksa do drm.
+Sterownik dla Linuksa do DRM.
 
 Ten pakiet zawiera modu³ j±dra Linuksa SMP.
 
