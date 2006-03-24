@@ -38,13 +38,12 @@ Obsoletes:	kernel-drm = %{_kernel_ver_str}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The DRM (Direct Rendering Manager) is a kernel module that gives
+The DRM (Direct Rendering Manager) is a Linux kernel module that gives
 direct hardware access to DRI clients.
 
 %description -l pl
-Sterownik dla Linuksa do DRM.
-
-Ten pakiet zawiera modu³ j±dra Linuksa.
+DRM (Direct Rendering Manager) to modu³ j±dra Linuksa daj±cy
+bezpo¶redni dostêp do sprzêtu klientom DRI.
 
 %package -n kernel-smp-video-drm
 Summary:	Linux SMP driver for DRM
@@ -60,11 +59,14 @@ Requires(postun):	%releq_kernel_smp
 Obsoletes:	kernel-smp-drm = %{_kernel_ver_str}
 
 %description -n kernel-smp-video-drm
-The DRM (Direct Rendering Manager) is a kernel module that gives
+The DRM (Direct Rendering Manager) is a Linux kernel module that gives
 direct hardware access to DRI clients.
 
+This package contains Linux SMP module.
+
 %description -n kernel-smp-video-drm -l pl
-Sterownik dla Linuksa do DRM.
+DRM (Direct Rendering Manager) to modu³ j±dra Linuksa daj±cy
+bezpo¶redni dostêp do sprzêtu klientom DRI.
 
 Ten pakiet zawiera modu³ j±dra Linuksa SMP.
 
