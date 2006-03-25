@@ -23,7 +23,6 @@ License:	GPL v2
 Group:		Base/Kernel
 Source0:	drm-%{version}.tar.bz2
 # Source0-md5:	a82d473de399da966b2562e67faedcaf
-Patch0:		%{name}-pciids.patch
 URL:		http://dri.freedesktop.org/wiki/DRM
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.7}
@@ -72,7 +71,6 @@ Ten pakiet zawiera modu³ j±dra Linuksa SMP.
 
 %prep
 %setup -q -n drm
-%patch0 -p1
 
 %build
   %if %{with kernel}
