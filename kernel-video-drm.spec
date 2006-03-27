@@ -25,8 +25,8 @@ Source0:	drm-%{version}.tar.bz2
 # Source0-md5:	a82d473de399da966b2562e67faedcaf
 URL:		http://dri.freedesktop.org/wiki/DRM
 %if %{with kernel}
-%{?with_dist_kernel:BuildRequires:	kernel-module-build >= 2.6.7}
-BuildRequires:	rpmbuild(macros) >= 1.217
+%{?with_dist_kernel:BuildRequires:	kernel-module-build >= 3:2.6.14}
+BuildRequires:	rpmbuild(macros) >= 1.286
 %endif
 Requires(post,postun):	/sbin/depmod
 %if %{with dist_kernel}
@@ -73,7 +73,7 @@ Ten pakiet zawiera modu³ j±dra Linuksa SMP.
 %setup -q -n drm
 
 %build
-  %if %{with kernel}
+%if %{with kernel}
 
 cd linux-core
 install -d {ko-up,ko-smp}
@@ -83,19 +83,26 @@ for cfg in %{?with_dist_kernel:%{?with_smp:smp} up}%{!?with_dist_kernel:nondist}
 	if [ ! -r "%{_kernelsrcdir}/config-$cfg" ]; then
 		exit 1
 	fi
-	rm -rf include/{linux,config,asm}
-        rm -f .config
-	install -d include/{linux,config}
-	ln -sf %{_kernelsrcdir}/config-$cfg .config
-	ln -sf %{_kernelsrcdir}/include/linux/autoconf-$cfg.h include/linux/autoconf.h
-	ln -sf %{_kernelsrcdir}/include/asm-%{_target_base_arch} include/asm
-	touch include/config/MARKER
 
-	%{__make} M="$PWD" O="$PWD" drm_pciids.h
+	rm -f *.o
+	install -d o/include/linux
+	ln -sf %{_kernelsrcdir}/config-$cfg o/.config
+	ln -sf %{_kernelsrcdir}/Module.symvers-$cfg o/Module.symvers
+	ln -sf %{_kernelsrcdir}/include/linux/autoconf-$cfg.h o/include/linux/autoconf.h
+%if %{with dist_kernel}
+	%{__make} -j1 -C %{_kernelsrcdir} O=$PWD/o prepare scripts
+%else
+	install -d o/include/config
+	touch o/include/config/MARKER
+	ln -sf %{_kernelsrcdir}/scripts o/scripts
+%endif
+
 	%{__make} -C %{_kernelsrcdir} modules \
 		CC="%{__cc}" CPP="%{__cpp}" \
-		M="$PWD" O="$PWD" \
-		SUBDIRS="$PWD" DRMSRCDIR="$PWD" \
+		SYSSRC=%{_kernelsrcdir} \
+		SYSOUT=$PWD/o \
+		M=$PWD O=$PWD/o \
+		DRMSRCDIR="$PWD" LINUXDIR=%{_kernelsrcdir} \
 		%{?with_verbose:V=1}
 
 	mv *.ko ko-$cfg
