@@ -17,12 +17,12 @@
 Summary:	Linux driver for DRM
 Summary(pl):	Sterownik dla Linuksa do DRM
 Name:		kernel-video-drm
-Version:	20060405
+Version:	20061208
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
 Source0:	drm-%{version}.tar.bz2
-# Source0-md5:	fb1c8734c7f128383b2578a2a793f524
+# Source0-md5:	6ddb34015487c5fa15d523d26f72f97d
 URL:		http://dri.freedesktop.org/wiki/DRM
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel-module-build >= 3:2.6.14}
@@ -75,7 +75,11 @@ Ten pakiet zawiera modu³ j±dra Linuksa SMP.
 %build
 %if %{with kernel}
 
+chmod u+x scripts/create_linux_pci_lists.sh
 cd linux-core
+
+cat ../shared-core/drm_pciids.txt | ../scripts/create_linux_pci_lists.sh
+
 install -d {ko-up,ko-smp}
 
 # kernel module(s)
