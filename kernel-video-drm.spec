@@ -15,7 +15,7 @@
 
 %define		_rel	1
 Summary:	Linux driver for DRM
-Summary(pl):	Sterownik dla Linuksa do DRM
+Summary(pl.UTF-8):   Sterownik dla Linuksa do DRM
 Name:		kernel-video-drm
 Version:	20061208
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -40,13 +40,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 The DRM (Direct Rendering Manager) is a Linux kernel module that gives
 direct hardware access to DRI clients.
 
-%description -l pl
-DRM (Direct Rendering Manager) to modu³ j±dra Linuksa daj±cy
-bezpo¶redni dostêp do sprzêtu klientom DRI.
+%description -l pl.UTF-8
+DRM (Direct Rendering Manager) to moduÅ‚ jÄ…dra Linuksa dajÄ…cy
+bezpoÅ›redni dostÄ™p do sprzÄ™tu klientom DRI.
 
 %package -n kernel-smp-video-drm
 Summary:	Linux SMP driver for DRM
-Summary(pl):	Sterownik dla Linuksa SMP do DRM
+Summary(pl.UTF-8):   Sterownik dla Linuksa SMP do DRM
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
@@ -63,11 +63,11 @@ direct hardware access to DRI clients.
 
 This package contains Linux SMP module.
 
-%description -n kernel-smp-video-drm -l pl
-DRM (Direct Rendering Manager) to modu³ j±dra Linuksa daj±cy
-bezpo¶redni dostêp do sprzêtu klientom DRI.
+%description -n kernel-smp-video-drm -l pl.UTF-8
+DRM (Direct Rendering Manager) to moduÅ‚ jÄ…dra Linuksa dajÄ…cy
+bezpoÅ›redni dostÄ™p do sprzÄ™tu klientom DRI.
 
-Ten pakiet zawiera modu³ j±dra Linuksa SMP.
+Ten pakiet zawiera moduÅ‚ jÄ…dra Linuksa SMP.
 
 %prep
 %setup -q -n drm
