@@ -15,7 +15,7 @@
 
 %define		_rel	1
 Summary:	Linux driver for DRM
-Summary(pl.UTF-8):   Sterownik dla Linuksa do DRM
+Summary(pl.UTF-8):	Sterownik dla Linuksa do DRM
 Name:		kernel-video-drm
 Version:	20061208
 Release:	%{_rel}@%{_kernel_ver_str}
@@ -46,7 +46,7 @@ bezpośredni dostęp do sprzętu klientom DRI.
 
 %package -n kernel-smp-video-drm
 Summary:	Linux SMP driver for DRM
-Summary(pl.UTF-8):   Sterownik dla Linuksa SMP do DRM
+Summary(pl.UTF-8):	Sterownik dla Linuksa SMP do DRM
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
