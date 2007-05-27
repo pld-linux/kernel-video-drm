@@ -12,7 +12,7 @@
 %undefine	with_dist_kernel
 %endif
 
-%define		_rel	1
+%define		_rel	2
 Summary:	Linux driver for DRM
 Summary(pl.UTF-8):	Sterownik dla Linuksa do DRM
 Name:		kernel%{_alt_kernel}-video-drm
@@ -62,7 +62,7 @@ export DRMSRCDIR=`pwd`
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with kernel}
-%install_kernel_modules -m linux-core/{drm,mga,radeon,via,i810,nouveau,savage,i915,nv,sis,mach64,r128,tdfx} -d video
+%install_kernel_modules -m linux-core/{drm,mga,radeon,via,i810,nouveau,savage,i915,nv,sis,mach64,r128,tdfx} -d misc
 %endif
 
 %clean
@@ -77,5 +77,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with kernel}
 %files -n kernel%{_alt_kernel}-video-drm
 %defattr(644,root,root,755)
-/lib/modules/%{_kernel_ver}/video/*.ko*
+/lib/modules/%{_kernel_ver}/misc/*.ko*
 %endif
