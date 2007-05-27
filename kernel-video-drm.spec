@@ -16,12 +16,12 @@
 Summary:	Linux driver for DRM
 Summary(pl.UTF-8):	Sterownik dla Linuksa do DRM
 Name:		kernel%{_alt_kernel}-video-drm
-Version:	20061208
+Version:	20070527
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
 Source0:	drm-%{version}.tar.bz2
-# Source0-md5:	6ddb34015487c5fa15d523d26f72f97d
+# Source0-md5:	dc2deb74a48ac9d7a9512c4b9f5efa23
 URL:		http://dri.freedesktop.org/wiki/DRM
 %if %{with kernel}
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
@@ -51,14 +51,18 @@ bezpośredni dostęp do sprzętu klientom DRI.
 chmod u+x scripts/create_linux_pci_lists.sh
 cd linux-core
 cat ../shared-core/drm_pciids.txt | ../scripts/create_linux_pci_lists.sh
-%build_kernel_modules -m ko
+echo CONFIG_X86_CMPXCHG:=y >> Makefile.new
+cat Makefile >> Makefile.new
+mv Makefile.new Makefile
+export DRMSRCDIR=`pwd`
+%build_kernel_modules -m drm,mga,radeon,via,i810,nouveau,savage,i915,nv,sis,mach64,r128,tdfx
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with kernel}
-%install_kernel_modules -m ko -d video
+%install_kernel_modules -m linux-core/{drm,mga,radeon,via,i810,nouveau,savage,i915,nv,sis,mach64,r128,tdfx} -d video
 %endif
 
 %clean
