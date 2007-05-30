@@ -6,11 +6,6 @@
 # Conditional build:
 %bcond_without	dist_kernel	# allow non-distribution kernel
 %bcond_without	kernel		# don't build kernel modules
-%bcond_with	verbose		# verbose build (V=1)
-
-%if !%{with kernel}
-%undefine	with_dist_kernel
-%endif
 
 %define		_rel	3
 Summary:	Linux driver for DRM
