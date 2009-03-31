@@ -52,12 +52,20 @@ echo CONFIG_X86_CMPXCHG:=y >> Makefile.new
 cat Makefile >> Makefile.new
 mv Makefile.new Makefile
 export DRMSRCDIR=`pwd`
+%ifarch ppc ppc64
+%build_kernel_modules -m drm,mach64,mga,nouveau,r128,radeon,savage,sis,tdfx,via,xgi
+%else
 %build_kernel_modules -m drm,i810,mach64,mga,nouveau,r128,radeon,savage,sis,tdfx,via,xgi
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
+%ifarch ppc ppc64
+%install_kernel_modules -m linux-core/{drm,mach64,mga,nouveau,r128,radeon,savage,sis,tdfx,via,xgi} -d kernel/drivers/gpu/drm
+%else
 %install_kernel_modules -m linux-core/{drm,i810,mach64,mga,nouveau,r128,radeon,savage,sis,tdfx,via,xgi} -d kernel/drivers/gpu/drm
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,4 +78,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n kernel%{_alt_kernel}-video-drm
 %defattr(644,root,root,755)
-/lib/modules/%{_kernel_ver}/kernel/drivers/gpu/drm
+/lib/modules/%{_kernel_ver}/kernel/drivers/gpu
