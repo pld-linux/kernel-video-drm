@@ -8,7 +8,7 @@
 %bcond_without	kernel		# don't build kernel modules
 %bcond_with	verbose         # verbose build (V=1)
 
-%define		_rel	3
+%define		_rel	1
 Summary:	Linux driver for DRM
 Summary(pl.UTF-8):	Sterownik dla Linuksa do DRM
 Name:		kernel%{_alt_kernel}-video-drm
@@ -52,12 +52,12 @@ echo CONFIG_X86_CMPXCHG:=y >> Makefile.new
 cat Makefile >> Makefile.new
 mv Makefile.new Makefile
 export DRMSRCDIR=`pwd`
-%build_kernel_modules -m drm,mga,radeon,via,i810,nouveau,savage,i915,nv,sis,mach64,r128,tdfx
+%build_kernel_modules -m drm,i810,mach64,mga,nouveau,r128,radeon,savage,sis,tdfx,via,xgi
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%install_kernel_modules -m linux-core/{drm,mga,radeon,via,i810,nouveau,savage,i915,nv,sis,mach64,r128,tdfx} -d kernel/drivers/char/drm
+%install_kernel_modules -m linux-core/{drm,i810,mach64,mga,nouveau,r128,radeon,savage,sis,tdfx,via,xgi} -d kernel/drivers/char/drm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
