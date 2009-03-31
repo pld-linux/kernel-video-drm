@@ -18,7 +18,7 @@ License:	GPL v2
 Group:		Base/Kernel
 # git clone --depth 1 git://anongit.freedesktop.org/git/mesa/drm kernel-video-drm
 # cd kernel-video-drm
-# git archive master --prefix drm/ | bzip2 > kernel-video-drm-$(date +%Y%m%d).tar.bz2
+# git archive master --prefix drm/ | bzip2 > drm-$(date +%Y%m%d).tar.bz2
 Source0:	drm-%{version}.tar.bz2
 # Source0-md5:	968740b4883bf219cf831f585184f614
 URL:		http://dri.freedesktop.org/wiki/DRM
