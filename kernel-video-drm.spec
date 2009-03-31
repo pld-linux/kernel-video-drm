@@ -12,12 +12,15 @@
 Summary:	Linux driver for DRM
 Summary(pl.UTF-8):	Sterownik dla Linuksa do DRM
 Name:		kernel%{_alt_kernel}-video-drm
-Version:	20070528
+Version:	20090331
 Release:	%{_rel}@%{_kernel_ver_str}
 License:	GPL v2
 Group:		Base/Kernel
+# git clone --depth 1 git://anongit.freedesktop.org/git/mesa/drm kernel-video-drm
+# cd kernel-video-drm
+# git archive master --prefix drm/ | bzip2 > kernel-video-drm-$(date +%Y%m%d).tar.bz2
 Source0:	drm-%{version}.tar.bz2
-# Source0-md5:	a66e980f567ec3e06dc606b6d8a6266c
+# Source0-md5:	968740b4883bf219cf831f585184f614
 URL:		http://dri.freedesktop.org/wiki/DRM
 %{?with_dist_kernel:BuildRequires:	kernel%{_alt_kernel}-module-build >= 3:2.6.20.2}
 BuildRequires:	rpmbuild(macros) >= 1.379
